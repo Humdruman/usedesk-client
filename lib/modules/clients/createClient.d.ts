@@ -16,5 +16,5 @@ export declare type CreateClientResponse = {
     client_id: number;
     status: true;
 };
-export declare const createClient: (params?: CreateClientRequest) => Promise<unknown>;
+export declare const createClient: (params?: CreateClientRequest) => Promise<CreateClientResponse>;
 export {};
