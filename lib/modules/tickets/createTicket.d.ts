@@ -11,6 +11,7 @@ export declare type CreateTicketRequest = {
     field_id?: string;
     field_value?: string;
     assignee_id?: number;
+    from?: 'user' | 'client' | 'trigger';
 };
 export declare type CreateTicketResponse = {
     status: string;
