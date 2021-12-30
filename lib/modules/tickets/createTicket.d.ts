@@ -10,6 +10,7 @@ export declare type CreateTicketRequest = {
     tag?: string;
     field_id?: string;
     field_value?: string;
+    assignee_id?: number;
 };
 export declare type CreateTicketResponse = {
     status: string;
