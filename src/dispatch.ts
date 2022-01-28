@@ -18,7 +18,6 @@ const prepareDataToJsonRequest = (data: any, headers?: AxiosRequestHeaders) => {
 
 
 const axios = new Axios({
-    baseURL: defaultSetting.baseUrl,
     responseType: 'json',
     transformRequest: prepareDataToJsonRequest,
     validateStatus: status => status === 200
@@ -34,7 +33,7 @@ export const createDispatch = (appConfig: AppConfig) => {
 
         const options: AxiosRequestConfig = {
             method,
-            url
+            url: appConfig.baseUrl + url
         };
 
         if (!notEmptyString(appConfig.apiToken)) {
