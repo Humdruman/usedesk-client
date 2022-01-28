@@ -8,7 +8,7 @@
     "build": "tsc"
   },
   "keywords": [],
-  "author": "",
+  "author": "humdruman",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^16.11.11",
