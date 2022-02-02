@@ -1,11 +1,12 @@
 {
   "name": "usedesk-client",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "api client for usedesk",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "npm run build"
   },
   "repository": {
     "url": "https://github.com/Humdruman/usedesk-client.git",
@@ -16,9 +17,11 @@
     "email": "humdruman@gmail.com"
   },
   "files": [
-    "lib/**/*"
+    "lib"
   ],
-  "keywords": ["usedesk"],
+  "keywords": [
+    "usedesk"
+  ],
   "author": "humdruman",
   "license": "ISC",
   "devDependencies": {

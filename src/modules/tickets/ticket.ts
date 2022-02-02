@@ -7,6 +7,10 @@ export type TicketRequest = {
 
 export type TicketResponse = {
     ticket: Ticket;
+    changes:         Change[];
+    tags:            string[];
+    custom_fields:   CustomField[];
+    rights:          string;
 }
 
 export type Ticket = {
@@ -27,10 +31,6 @@ export type Ticket = {
     client_name:     string;
     active_sla:      ActiveSla[];
     comments:        Comment[];
-    changes:         Change[];
-    tags:            string[];
-    custom_fields:   CustomField[];
-    rights:          string;
 }
 
 export type ActiveSla = {
