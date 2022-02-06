@@ -1,4 +1,4 @@
-export {apiToken, baseUrl} from "./core";
+export {apiToken, hasApiToken, baseUrl} from "./core";
 
 export {
     getTicket,
@@ -26,4 +26,14 @@ export {
     CreateClientRequest,
     CreateClientResponse
 } from './modules/clients'
+
+
+export {
+    getUsers,
+    getUser,
+    Group,
+    User,
+    GetUsersRequest,
+    GetUserResponse
+} from './modules/users'
 

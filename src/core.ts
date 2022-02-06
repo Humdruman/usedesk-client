@@ -14,6 +14,8 @@ export const apiToken = (apiToken: string) => {
     config.apiToken = apiToken;
 }
 
+export const hasApiToken = () => !!config.apiToken
+
 export const baseUrl = (url: string) => {
     if(url.trim() === '') {
         throw new TypeError('url cannot be an empty string')
