@@ -1,6 +1,7 @@
 import defaultSetting from "./env/default";
 import type {AppConfig} from "./contracts/AppConfig";
 import {createDispatch} from "./dispatch";
+import {isValidUrl} from "./util/url";
 
 
 const config: AppConfig = {
@@ -16,11 +17,18 @@ export const apiToken = (apiToken: string) => {
 
 export const hasApiToken = () => !!config.apiToken
 
-export const baseUrl = (url: string) => {
+export const baseUrl = (url: string, strict = false) => {
     if(url.trim() === '') {
         throw new TypeError('url cannot be an empty string')
     }
+
+    if(strict && !isValidUrl(url)) {
+        throw new TypeError(`url invalid format - ${url}`)
+    }
+
     config.baseUrl = url;
 }
+
+export const getBaseUrl = () => config.baseUrl;
 
 export const dispatch = createDispatch(config);

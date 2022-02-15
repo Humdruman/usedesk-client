@@ -47,8 +47,12 @@ export const createDispatch = (appConfig: AppConfig) => {
 
         return axios.request(options)
             .catch(error => {
-                    const {status, statusText} = error.response;
-                    throw new ApiError(status, statusText);
+
+                    if ('response' in error && error.response) {
+                        const {status, statusText} = error.response;
+                        throw new ApiError(statusText, status);
+                    }
+                    throw new ApiError(error.message, 500);
                 }
             ).then(response => {
                 const data = typeof response.data === 'string'
