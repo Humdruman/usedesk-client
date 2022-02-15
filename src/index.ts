@@ -2,20 +2,24 @@ export {apiToken, hasApiToken, baseUrl} from "./core";
 
 export {
     getTicket,
+    getTickets,
+    updateTicket,
+    createComment,
+    createTicket,
+    fields
+} from './modules/tickets'
+
+export type  {
     TicketResponse,
     TicketRequest,
-    getTickets,
     TicketsRequest,
     TicketsResponse,
-    updateTicket,
     UpdateTicketResponse,
     UpdateTicketRequest,
-    createComment,
     CreateCommentRequest,
     CreateCommentResponse,
-    createTicket,
     CreateTicketRequest,
-    CreateTicketResponse
+    CreateTicketResponse,
 } from './modules/tickets'
 
 export {
