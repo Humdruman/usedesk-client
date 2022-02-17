@@ -31,4 +31,4 @@ export const baseUrl = (url: string, strict = false) => {
 
 export const getBaseUrl = () => config.baseUrl;
 
-export const dispatch = createDispatch(config);
+export const globalDispatch = createDispatch(config);

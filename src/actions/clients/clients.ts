@@ -1,4 +1,5 @@
-import {dispatch} from "../../core";
+import {globalDispatch} from "../../core";
+import {Dispatch} from "../../dispatch";
 
 
 export type ClientsRequest = {
@@ -17,9 +18,11 @@ export type ClientsResponse = {
     tickets: [number]
 }
 
-export const clients = async (params: ClientsRequest = {}) => {
+export const clients = async (params: ClientsRequest = {}, dispatch: Dispatch = globalDispatch) => {
     return await dispatch<[ClientsResponse]>('/clients', params)
 }
+
+export type ClientsAction = typeof clients;
 
 
 

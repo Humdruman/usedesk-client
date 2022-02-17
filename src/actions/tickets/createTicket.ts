@@ -1,4 +1,5 @@
-import {dispatch} from "../../core";
+import {globalDispatch} from "../../core";
+import {Dispatch} from "../../dispatch";
 
 
 export type CreateTicketRequest = {
@@ -14,7 +15,7 @@ export type CreateTicketRequest = {
     field_id?: string,
     field_value?: string,
     assignee_id?: number,
-    from?: 'user'|'client'|'trigger'
+    from?: 'user' | 'client' | 'trigger'
 }
 
 export type CreateTicketResponse = {
@@ -22,9 +23,15 @@ export type CreateTicketResponse = {
     ticket_id: number
 }
 
-export const createTicket = async (subject: string, message: string, params: CreateTicketRequest = {}) => {
+export const createTicket = async (
+    subject: string,
+    message: string,
+    params: CreateTicketRequest = {},
+    dispatch: Dispatch = globalDispatch) => {
     return await dispatch<CreateTicketResponse>('/create/ticket', Object.assign(params, {
         subject,
         message
     }));
 }
+
+export type CreateTicketAction = typeof createTicket;

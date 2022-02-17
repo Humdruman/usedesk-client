@@ -1,4 +1,5 @@
-import {dispatch} from "../../core";
+import {globalDispatch} from "../../core";
+import {Dispatch} from "../../dispatch";
 
 type Fassigned = {
     assignee_id?: number | 'unassinged',
@@ -76,6 +77,8 @@ export type TicketField = {
 }
 
 
-export const getTickets =  async (params: TicketsRequest  = {} ) => {
+export const getTickets =  async (params: TicketsRequest  = {}, dispatch: Dispatch = globalDispatch ) => {
     return dispatch<TicketsResponse[]>('/tickets', params)
 }
+
+export type GetTicketsAction = typeof getTickets;

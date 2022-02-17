@@ -1,4 +1,5 @@
-import {dispatch} from "../../core";
+import {globalDispatch} from "../../core";
+import {Dispatch} from "../../dispatch";
 
 type Messenger = {
     identity: string,
@@ -23,6 +24,8 @@ export type CreateClientResponse = {
 }
 
 
-export const createClient = async (params: CreateClientRequest = {}) => {
+export const createClient = async (params: CreateClientRequest = {}, dispatch: Dispatch = globalDispatch) => {
     return await dispatch<CreateClientResponse>('/create/client', params);
 }
+
+export type CreateClientAction = typeof createClient;

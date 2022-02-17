@@ -1,4 +1,5 @@
-import {dispatch} from "../../core";
+import {globalDispatch} from "../../core";
+import {Dispatch} from "../../dispatch";
 
 
 
@@ -52,6 +53,8 @@ type ListField = {
 type FieldsResponse = (Fields|ListField)[]
 
 
-export const fields = async () => {
+export const fields = async (dispatch: Dispatch = globalDispatch) => {
     return await dispatch<FieldsResponse>('/ticket/fields');
 }
+
+export type FieldsAction = typeof fields;

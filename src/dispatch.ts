@@ -1,10 +1,14 @@
 import {Axios, AxiosRequestConfig, AxiosRequestHeaders, Method} from "axios";
 import {RequestBody} from "./contracts/RequestBody";
 import ApiError from "./exception/ApiError";
-import defaultSetting from "./env/default";
 import {AppConfig} from "./contracts/AppConfig";
 import {toJson} from "./util/json";
 import {notEmptyString} from "./util/string";
+
+
+export interface Dispatch {
+    <R extends any>(url: string, body?: RequestBody, method?: Method): Promise<R>;
+}
 
 
 const prepareDataToJsonRequest = (data: any, headers?: AxiosRequestHeaders) => {
@@ -24,7 +28,7 @@ const axios = new Axios({
 });
 
 
-export const createDispatch = (appConfig: AppConfig) => {
+export const createDispatch = (appConfig: AppConfig): Dispatch => {
 
     return <ResponseData extends any>(
         url: string,

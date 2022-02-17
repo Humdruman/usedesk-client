@@ -1,4 +1,5 @@
-import {dispatch} from "../../core";
+import {globalDispatch} from "../../core";
+import {Dispatch} from "../../dispatch";
 
 type Priority = 'low' | 'medium' | 'urgent' | 'extreme';
 
@@ -31,8 +32,13 @@ export type UpdateTicketResponse = {
 }
 
 
-export const updateTicket = async (ticketId: number, params: UpdateTicketRequest = {}) => {
+export const updateTicket = async (
+    ticketId: number,
+    params: UpdateTicketRequest = {},
+    dispatch: Dispatch = globalDispatch) => {
     return await dispatch<UpdateTicketResponse>('/update/ticket',Object.assign(params, {
         ticket_id: ticketId
     }))
 }
+
+export type UpdateTicketAction = typeof updateTicket;

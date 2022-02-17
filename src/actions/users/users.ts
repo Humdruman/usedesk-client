@@ -1,4 +1,5 @@
-import {dispatch} from "../../core";
+import {globalDispatch} from "../../core";
+import {Dispatch} from "../../dispatch";
 
 
 export type GetUsersRequest = {
@@ -39,12 +40,16 @@ export type User = {
 export type GetUserResponse = User[] | User
 
 
-export const getUser = async (userId: number) => {
+export const getUser = async (userId: number, dispatch: Dispatch = globalDispatch) => {
     return await dispatch<User>('/users', {
         user_id: userId
     })
 }
 
-export const getUsers = async (params: GetUsersRequest = {}) => {
+export type GetUserAction = typeof getUser;
+
+export const getUsers = async (params: GetUsersRequest = {}, dispatch: Dispatch = globalDispatch) => {
     return await dispatch<GetUserResponse>('/users', params);
 }
+
+export type GetUsersAction = typeof getUsers;
