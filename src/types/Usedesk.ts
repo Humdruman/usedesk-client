@@ -1,5 +1,5 @@
 import {UsedeskTrigger} from "./UsedeskTrigger";
-import {UsedeskResponse} from "./response";
+
 
 export namespace Usedesk {
 
