@@ -11,8 +11,8 @@ type FieldTypeNestedList = 4;
 type BooleanNumbers = 0|1;
 
 export type CustomFieldGeneral  = {
-    id:                   string;
-    company_id:           string;
+    id:                   number;
+    company_id:           number;
     name:                 string;
     value:                null;
     required:             BooleanNumbers;

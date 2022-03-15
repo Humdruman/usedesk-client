@@ -1,49 +1,23 @@
 import {globalDispatch} from "../../core";
 import {Dispatch} from "../../dispatch";
-
+import {Usedesk} from "../../types";
 
 export type GetUsersRequest = {
-    user_type?: 'admin'|'employee' | 'support',
-    group_id?: string,
+    user_type?: Usedesk.UserRole,
+    group_id?: number,
     query?: string,
     user_id?: number
 }
 
-export type Group = {
-    id: number,
-    name: string,
-    company_id: number,
-    deleted: number,
-    deleted_at: string,
-    custom_working_time: number,
-    timezone: string,
-    is_demo: number,
-    pivot: {
-        user_id: number,
-        user_group_id: number
-    }
-}
 
-export type User = {
-    id: number,
-    name: string,
-    email: string,
-    position: string,
-    role: string,
-    phone: null| string,
-    online_status: null|string,
-    avatar: null|string,
-    chat_online_status: number
-}
+export type GetUserResponse = Usedesk.User[]
 
 
-export type GetUserResponse = User[] | User
-
-
-export const getUser = async (userId: number, dispatch: Dispatch = globalDispatch) => {
-    return await dispatch<User>('/users', {
+export const getUser = async (userId: number, dispatch: Dispatch = globalDispatch): Promise<Usedesk.User|undefined> => {
+    const [user] = await dispatch<GetUserResponse>('/users', {
         user_id: userId
     })
+    return user;
 }
 
 export type GetUserAction = typeof getUser;

@@ -1,13 +1,9 @@
 import {globalDispatch} from "../../core";
 import {Dispatch} from "../../dispatch";
+import {Usedesk} from "../../types/Usedesk";
 
-type Priority = 'low' | 'medium' | 'urgent' | 'extreme';
 
-type Status = 1|2|3|4|5|6|7|8|9|10;
-
-type Type = 'question'|'task' |'problem' |'incident'
-
-type List = {
+export interface ListItem {
     id: number,
     value: string
 }
@@ -19,12 +15,12 @@ export type UpdateTicketRequest = {
     assignee_id?: number,
     user_id?: number,
     tag?: string,
-    priority?: Priority,
-    status?: Status,
-    type?: Type,
+    priority?: Usedesk.TicketPriority,
+    status?: Usedesk.Status,
+    type?: Usedesk.TicketType,
     field_id?: string,
     field_value?: string,
-    list?: List[]
+    list?: ListItem[]
 }
 
 export type UpdateTicketResponse = {

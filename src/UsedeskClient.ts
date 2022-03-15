@@ -4,6 +4,8 @@ import * as actions from './actions'
 import defaultSetting from './env/default'
 import type {
     ClientsAction,
+    ClientAction,
+    UpdateClientAction,
     CreateClientAction,
     CreateTicketAction,
     CreateCommentAction,
@@ -11,15 +13,23 @@ import type {
     GetTicketAction,
     GetTicketsAction,
     UpdateTicketAction,
+    GetTagsAction,
     GetUserAction,
-    GetUsersAction
+    GetUsersAction,
+    CreateUserAction,
+    UpdateUserAction,
+    DeleteUserAction,
+    GetGroupsAction,
+    GetChannelsAction
 } from "./actions";
 
 
 
 type ClientsActions = {
+    getClient: ClientAction;
     clients: ClientsAction;
-    createClient: CreateClientAction
+    updateClient: UpdateClientAction;
+    createClient: CreateClientAction;
 }
 
 type TicketsActions = {
@@ -28,12 +38,21 @@ type TicketsActions = {
     createTicket: CreateTicketAction,
     updateTicket: UpdateTicketAction,
     fields: FieldsAction,
+    getTags: GetTagsAction,
     createComment: CreateCommentAction,
 }
 
 type UsersActions = {
     getUser: GetUserAction,
-    getUsers: GetUsersAction
+    getUsers: GetUsersAction,
+    deleteUser: DeleteUserAction,
+    updateUser: UpdateUserAction,
+    createUser: CreateUserAction,
+    getGroups: GetGroupsAction
+}
+
+type ChannelsActions = {
+    getChannels: GetChannelsAction
 }
 
 class Client {
@@ -50,13 +69,13 @@ class Client {
 
 }
 
-export type UsedeskClient = Client & ClientsActions & TicketsActions & UsersActions;
+export type UsedeskClient = Client & ClientsActions & TicketsActions & UsersActions & ChannelsActions;
 
 
 
 export const createApiClient = (token: string, baseUrl:string = defaultSetting.baseUrl): UsedeskClient => {
     const actionsHandler = {
-        get(target: Client & {[key: string]: any}, propName: string) {
+        get(target: UsedeskClient & {[key: string]: any}, propName: string) {
             if(propName in target) {
                 return target[propName];
             }

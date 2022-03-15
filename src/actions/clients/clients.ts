@@ -1,8 +1,20 @@
 import {globalDispatch} from "../../core";
 import {Dispatch} from "../../dispatch";
+import {Usedesk} from "../../types";
 
 
-export type ClientsRequest = {
+type GetClientsReturned =  {
+    id: Usedesk.Client['id'],
+    name: Usedesk.Client['name'],
+    tickets: Usedesk.Client['tickets'],
+    phone: string|null,
+    emails: string|null
+}
+
+type GetClientsResponse = GetClientsReturned[]
+
+
+export type GetClientsRequest = {
     created_after?: string,
     created_before?: string,
     offset?: number,
@@ -10,16 +22,8 @@ export type ClientsRequest = {
     search_type?: 'partial_match'|'full_match'
 }
 
-export type ClientsResponse = {
-    id: number,
-    name: string,
-    emails: string,
-    phone: string,
-    tickets: [number]
-}
-
-export const clients = async (params: ClientsRequest = {}, dispatch: Dispatch = globalDispatch) => {
-    return await dispatch<[ClientsResponse]>('/clients', params)
+export const clients = async (params: GetClientsRequest = {}, dispatch: Dispatch = globalDispatch) => {
+    return await dispatch<GetClientsResponse>('/clients', params)
 }
 
 export type ClientsAction = typeof clients;

@@ -1,30 +1,13 @@
 import {globalDispatch} from "../../core";
 import {Dispatch} from "../../dispatch";
+import {MutateClientBody} from "./types";
 
-type Messenger = {
-    identity: string,
-    type: 'telegram'| 'whatsapp' | 'viber'| 'skype'| 'gtalk'|  'imessage' |  'other',
-    uid: string
-}
-
-//TODO: дописать параметры
-export type CreateClientRequest = {
-    name?: string,
-    emails?: [string],
-    messengers?: [Messenger],
-    note?: string,
-    is_new_note?: boolean,
-    phone?: string,
-    status?: 'vip'|'spammer'
-}
-
-export type CreateClientResponse = {
+export interface CreateClientResponse  {
     client_id: number,
-    status: true
+    status: boolean
 }
 
-
-export const createClient = async (params: CreateClientRequest = {}, dispatch: Dispatch = globalDispatch) => {
+export const createClient = async (params: MutateClientBody = {}, dispatch: Dispatch = globalDispatch) => {
     return await dispatch<CreateClientResponse>('/create/client', params);
 }
 

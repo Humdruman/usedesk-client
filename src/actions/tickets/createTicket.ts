@@ -1,21 +1,41 @@
 import {globalDispatch} from "../../core";
 import {Dispatch} from "../../dispatch";
+import {Usedesk} from "../../types";
 
+
+interface ListItem {
+    id: number,
+    value: string
+}
 
 export type CreateTicketRequest = {
     client_name?: string,
     client_email?: string,
-    client_id?: number,
+    client_id?: number|'new_client',
     company_name?: string,
     private_comment?: boolean,
     additional_id?: string,
-    type?: 'question' | 'task' | 'problem' | 'incident',
-    priority?: 'low' | 'medium' | 'urgent' | 'extreme',
+    type?: Usedesk.TicketType,
+    priority?: Usedesk.TicketPriority,
+    status?: Usedesk.Status,
     tag?: string,
+    assignee_id?: number,
+    group_id?: number,
+    client_phone?: string,
+    channel_id?: number,
+    files?: Usedesk.Utils.UploadFile[],
     field_id?: string,
     field_value?: string,
-    assignee_id?: number,
-    from?: 'user' | 'client' | 'trigger'
+    from?: Usedesk.SubjectType,
+    user_id?: number,
+    trigger_id?: number,
+    client_country?: string,
+    client_city?: string,
+    client_address?: string,
+    new_address?: boolean,
+    phone_type?: Usedesk.PhoneType,
+    lists?: ListItem[]
+
 }
 
 export type CreateTicketResponse = {

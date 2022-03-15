@@ -4,3 +4,4 @@ export * from "./updateTicket";
 export * from "./comment";
 export * from "./createTicket";
 export * from "./fields";
+export * from './tags';
