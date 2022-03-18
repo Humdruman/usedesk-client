@@ -200,7 +200,7 @@ export namespace Usedesk {
         file: null,
         bcc: [],
         cc: [],
-        files: [],
+        files: Utils.UploadFile[],
         client: null | ClientInMessage,
         user: null | UserInMessage
     }
@@ -320,6 +320,11 @@ export namespace Usedesk {
 
     export type SocialNetworkType = 'twitter' | 'facebook' | 'vk' | 'ok' | 'instagram' | 'youtube' | 'gplus' | 'other'
 
+    export interface CustomBlock {
+        name: string,
+        url: Utils.Url,
+        secret_key: string
+    }
 
     export namespace Utils {
         export type NumberBoolean = 0 | 1;

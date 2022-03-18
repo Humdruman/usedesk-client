@@ -4,8 +4,8 @@ export namespace UsedeskTrigger {
 
     export interface Trigger {
         id: number,
-        Target_id: null,
-        user_id: number,
+        trigger_id: number|null,
+        user_id: number|null,
         ticket_id: number,
         data: Target[],
         changed_at: Date,
