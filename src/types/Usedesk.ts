@@ -326,6 +326,36 @@ export namespace Usedesk {
         secret_key: string
     }
 
+
+    export type AdditionalBlockQuery<T extends object = {}> = {
+        ticket_id: number,
+        subject: string,
+        client_id: number,
+        channel_type: ChannelType,
+        channel_id: number,
+        contact: string,
+        from_email: string,
+        client_data: {
+            name: Client['name'],
+            emails: string[],
+            phones: Pick<Phone, 'type' | 'phone'>[],
+            social_services: Pick<SocialNetwork, 'type' | 'url' | 'uid'>[],
+            addresses: Pick<Address, 'country' | 'city' | 'address' | 'type'>[],
+            messengers: { type: MessengerType, id: Messenger['identity']}[],
+            sites: Utils.Url[]
+        },
+        channel_data: {
+            type: ChannelType,
+            data: string,
+            id: number
+        },
+        is_auto_load: "0" | "1",
+    } & T;
+
+    export const isAdditionalBlockQuery = (q: unknown): q is AdditionalBlockQuery => {
+        return typeof q === 'object' && q !== null && 'ticket_id' in q && 'client_data' in q && 'channel_data' in q;
+    }
+
     export namespace Utils {
         export type NumberBoolean = 0 | 1;
         export type Url<B = string> = `${'http' | 'https'}://${B extends string ? B : never}`
