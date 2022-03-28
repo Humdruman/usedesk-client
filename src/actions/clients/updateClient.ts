@@ -12,7 +12,7 @@ export const updateClient = async (
     params: MutateClientBody = {},
     dispatch: Dispatch = globalDispatch
 ) => {
-    return await dispatch<UpdateClientResponse>('/create/client', {client_id: clientId, ...params});
+    return await dispatch<UpdateClientResponse>('/update/client', {client_id: `${clientId}`, ...params});
 }
 
 export type UpdateClientAction = typeof updateClient;
