@@ -65,8 +65,6 @@ class Client {
     public get baseUrl() {
         return this._baseUrl
     }
-
-
 }
 
 export type UsedeskClient = Client & ClientsActions & TicketsActions & UsersActions & ChannelsActions;
@@ -94,7 +92,7 @@ export const createApiClient = (token: string, baseUrl:string = defaultSetting.b
                 };
             }
 
-            throw new Error(`Invalid method ${propName} in Usedesk client`)
+            return undefined;
         }
     }
 
