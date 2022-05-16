@@ -4,13 +4,13 @@ import {UsedeskTrigger} from "./UsedeskTrigger";
 
 export namespace UsedeskWebhook {
 
-    interface Webhook {
+    export interface Webhook {
         secret: string,
         [key: string]: any
     }
 
 
-    interface NewTicket extends Webhook{
+    export interface NewTicket extends Webhook{
         secret: string,
         ticket: Ticket,
         client: Client,
@@ -20,7 +20,7 @@ export namespace UsedeskWebhook {
 
 
 
-    interface NewComment extends Webhook{
+    export interface NewComment extends Webhook{
         secret: string,
         comment: Omit<Usedesk.Comment, 'bcc' | 'cc' | 'client' | 'user' | 'client_name'>,
         custom_fields: Usedesk.TicketField[],
@@ -28,7 +28,7 @@ export namespace UsedeskWebhook {
         assignee_id: number | null
     }
 
-    interface UpdatedTicket extends Webhook{
+    export interface UpdatedTicket extends Webhook{
         secret: string,
         trigger: UsedeskTrigger.Trigger,
         custom_fields: Usedesk.TicketField[],
@@ -37,7 +37,7 @@ export namespace UsedeskWebhook {
         assignee_id: number | null
     }
 
-    interface Csi extends  Webhook{
+    export interface Csi extends  Webhook{
         secret: string,
         csi: {
             id: number,
