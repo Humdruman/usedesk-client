@@ -56,7 +56,11 @@ export const createDispatch = (appConfig: AppConfig): Dispatch => {
                         const {status, statusText} = error.response;
                         throw new ApiError(statusText, status);
                     }
-                    throw new ApiError(error.message, 500);
+                    const errorMessage = typeof error.message === 'object'
+                        ? JSON.stringify(error.message)
+                        : error.message;
+
+                    throw new ApiError(errorMessage, 500);
                 }
             ).then(response => {
                 const data = typeof response.data === 'string'
