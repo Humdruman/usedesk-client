@@ -187,7 +187,7 @@ export namespace Usedesk {
     export interface Comment {
         id: number,
         message: string,
-        from: MessageSubject,
+        from: Exclude<MessageSubject, 'trigger'>,
         type: MessageType,
         user_id: number | null,
         client_id: number | null,

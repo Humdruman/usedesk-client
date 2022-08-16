@@ -1,6 +1,6 @@
 {
   "name": "usedesk-client",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "api client for usedesk",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
